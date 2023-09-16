@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .wrapper
+    {
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;  
+        background: linear-gradient(to bottom right,#FFDEF2,#E6F0FF);
+        height: 100vh;
+        width: 100%;
+    }
+    .board
+    {
+        background-color: #dac0a3ac;
+        /* height: 500px; */
+        margin: auto;
+    }
+    .content
+    {
+        margin: auto;
+    }
+    .grid-row 
+    {
+        display: flex;
+    }
+    .grid-row div
+    {
+        height: 40px;
+        width: 40px;
+        background-color: transparent;
+        border:5px solid;
+        border-color:#f5f3eb #bab7a9 #bab7a9 #fff9db;
+        box-sizing: border-box;
+    }
+
+</style>
+
+<body>
+    <div class="wrapper row">
+        <div class="board col-lg-4 p-4">
+
+            <!-- <div class="game-block row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-1"></div>
+            </div> -->
+            <div class="grid ">
+            </div>
+            
+        </div>
+        <div class="contain row">
+            <div class="content col-lg-4">
+                <div class="flags"><h2>Flags Left: </h2> <span id="flags-count">0</span></div>
+                <div class="display-result"></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+<script>
+
+let grid=document.querySelector(".grid");
+let flags_count=document.querySelector("#flags-count");
+let width=10;
+
+let id_number=0;
+let flags_left=20;
+
+//create grid blocks
+for(let i=0;i<width;i++)
+{
+    let grid_row=document.createElement("div");
+    grid_row.setAttribute("class","grid-row")
+    // d.setAttribute("class","col-lg-1");
+    // console.log(grid_row.getAttribute("class"));
+
+    for(let j=0;j<width;j++)
+    {
+        let c=document.createElement("div");
+        // c.style.display="flex";
+        c.setAttribute("id",id_number++);
+        
+        // c.style="background-color: "
+        // console.log(c.getAttribute("id"));
+        grid_row.append(c);
+
+    }
+    grid.append(grid_row);
+}
+let exclude =[];
+plantBomb();
+
+
+function plantBomb()
+{
+    for(let x=0;x<20;x++)
+    {
+        let r=Math.floor(Math.random() * (99 - 0) + 0);
+        exclude.push(r);
+    }
+    console.log(exclude);
+}
+</script>
+
+
+</html>
