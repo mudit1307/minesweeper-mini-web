@@ -89,9 +89,11 @@
 let grid=document.querySelector(".grid");
 let flags_count=document.querySelector("#flags-count");
 let width=10;
+let bombs=20;
 
 let id_number=0;
 let flags_left=20;
+
 
 //create grid blocks
 for(let i=0;i<width;i++)
@@ -114,18 +116,28 @@ for(let i=0;i<width;i++)
     }
     grid.append(grid_row);
 }
-let exclude =[];
 plantBomb();
 
 
 function plantBomb()
 {
-    for(let x=0;x<20;x++)
+    let exclude =[];
+    for(let x=0;x<bombs;x++)
     {
         let r=Math.floor(Math.random() * (99 - 0) + 0);
+        while(exclude.includes(r))
+        {
+        r=Math.floor(Math.random() * (99 - 0) + 0);
+        }
         exclude.push(r);
     }
     console.log(exclude);
+
+    for(let i=0;i<bombs;i++)
+    {
+        let e=document.getElementById(exclude[i]);
+        e.innerHTML='💣';
+    }
 }
 </script>
 
